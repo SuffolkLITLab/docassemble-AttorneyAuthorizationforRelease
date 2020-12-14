@@ -62,13 +62,13 @@ code: |
   # Set the answer file name.
   set_parts(subtitle=str(users[0])) 
   set_progress(12.5)
-  signature_date
   str(attorneys)
   attorneys_address
   set_progress(25.0)
   #users[0]
   str(other_parties[0])
   str(witnesses)
+  signature_date
   # Save (anonymized) interview statistics.
   #store_variables_snapshot(data={'zip': users[0].address.zip})
   Release_Athortization_preview_question # Pre-canned preview screen
@@ -85,6 +85,10 @@ question: |
   Authorization for Release of Information
 subquestion: |
   This form gives your attorney permission to access private information that may be needed in regards to the specific legal dispute mentioned in the form. Once filled out, this form should be emailed, mailed, or delievered back to your attorney's office. 
+  
+  This interview asks you basic information about regarding your name, attorney information and the name of the opposing party. 
+  
+  <b>This form requires a witness signature, please have a witness present to sign at the end</b>
 ---
 id: Review your form before you sign it
 continue button field: Release_Athortization_preview_question
@@ -97,9 +101,9 @@ subquestion: |
 ---
 id: Screen one
 question: |
-  Screen one
+  Attorney's Address
 subquestion: |
-  Placeholder text
+  What is your Attorney's Address?
 fields:
   - "Attorney's Street Address": attorneys_address
   - 'City': attorneys_city
@@ -125,7 +129,7 @@ attachment:
     variable name: Release_Athortization_attachment[i]
     name: Attorney Information Release
     filename: Attorney_Information_Release
-    docx template file: English_Authorization_for_Release_of_Information_1.docx
+    docx template file: Attorney_Authorization_for_Release_English.docx
 ---
 id: Release_Athortization review screen
 event: review_Release_Athortization
