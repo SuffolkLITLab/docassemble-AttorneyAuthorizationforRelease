@@ -1,0 +1,172 @@
+include:
+  - docassemble.MAVirtualCourt:basic-questions.yml
+---
+comment: |
+  The metadata section controls the tab title and saved interview title. You can delete this section if you include this YAML file in another YAML file.
+metadata:
+  title: |
+    Authorization for Release of Information
+  short title: |
+    Attorney Information Release
+---
+comment: |
+  This section is used by MAVirtualCourts to control how some of the questions work.
+mandatory: True
+code: |
+  interview_metadata # make sure we initialize the object
+  if not defined("interview_metadata['Release_Athortization']"):
+    interview_metadata.initializeObject('Release_Athortization')
+  interview_metadata['Release_Athortization'].update({
+    'title': 'Authorization for Release of Information',
+    'short title': 'Attorney Information Release',
+    'description': 'This form allows your attorney to obtain private information from a third party.',
+    'original_form': '',
+    'allowed courts': [
+    ],
+    'categories': [
+      'Consumer and Debt',
+      'Domestic Violence / Safety of self',
+      'Education',
+      'Employment / Unemployment',
+      'Family Law',
+      'Guardianship',
+      'Health and Mental Health',
+      'Housing',
+      'Immigration',
+      'Income and benefits',
+      'Rights of incarcerated/formerly incarcerated',
+    ],
+    'logic block variable': 'Release_Athortization',
+    'attachment block variable': 'Release_Athortization_attachment',
+    'typical role': 'unknown',
+  })
+---
+features:
+  navigation: True
+---
+sections:
+  - review_Release_Athortization: Review your answers
+---
+id: interview_order_Release_Athortization
+code: |
+  # This is a placeholder to control logic flow in this interview
+
+  basic_questions_intro_screen 
+  Release_Athortization_intro
+  # Set the allowed courts for this interview
+  allowed_courts = interview_metadata["Release_Athortization"]["allowed courts"]
+  nav.set_section('review_Release_Athortization')
+  # Below sets the user_role by asking a question.
+  # You can set user_role directly instead to either 'plaintiff' or 'defendant'
+  user_ask_role
+  # Set the answer file name.
+  set_parts(subtitle=str(users[0])) 
+  set_progress(12.5)
+  signature_date
+  str(attorneys)
+  attorneys_address
+  set_progress(25.0)
+  #users[0]
+  str(other_parties[0])
+  str(witnesses)
+  # Save (anonymized) interview statistics.
+  #store_variables_snapshot(data={'zip': users[0].address.zip})
+  Release_Athortization_preview_question # Pre-canned preview screen
+  basic_questions_signature_flow
+  witnesses[0].signature
+  users[0].signature
+  Release_Athortization = True
+---
+comment: |
+  This question is used to introduce your interview. Please customize
+id: Authorization for Release of Information
+continue button field: Release_Athortization_intro
+question: |
+  Authorization for Release of Information
+subquestion: |
+  This form gives your attorney permission to access private information that may be needed in regards to the specific legal dispute mentioned in the form. Once filled out, this form should be emailed, mailed, or delievered back to your attorney's office. 
+---
+id: Review your form before you sign it
+continue button field: Release_Athortization_preview_question
+question: |
+  Review your form before you sign it
+subquestion: |
+  Here is a preview of the form you'll sign on the next page. 
+  
+   ${ pdf_concatenate(Release_Athortization_attachment['preview'], filename='Release_Athortization.pdf')}
+---
+id: Screen one
+question: |
+  Screen one
+subquestion: |
+  Placeholder text
+fields:
+  - "Attorney's Street Address": attorneys_address
+  - 'City': attorneys_city
+---
+progress: 100
+mandatory: True
+id: Your form is ready to download and file
+question: |
+  Your form is ready to download
+subquestion: |
+  Thank you ${users}. Your form is ready. Please download this form and mail, e-mail, fax or deliver a copy to your attorney for their records. 
+  
+  Below is a preview of your form.
+  
+  ${pdf_concatenate(Release_Athortization_attachment['final'], filename='Release_Athortization.pdf') }
+need: Release_Athortization
+attachment code: Release_Athortization_attachment['final']
+---
+objects:
+  - Release_Athortization_attachment: DADict
+---
+attachment:
+    variable name: Release_Athortization_attachment[i]
+    name: Attorney Information Release
+    filename: Attorney_Information_Release
+    docx template file: English_Authorization_for_Release_of_Information_1.docx
+---
+id: Release_Athortization review screen
+event: review_Release_Athortization
+question: |
+  Placeholder Review Screen
+subquestion: |
+  Edit your answers below
+review: 
+  - Edit: attorneys_address
+    button: |
+      Attorney's Street Address:
+      ${ attorneys_address }
+  - Edit: attorneys_city
+    button: |
+      City:
+      ${ attorneys_city }
+  - Edit: witnesses[0].name.first
+    button: |
+      witnesses:
+      ${ witnesses }
+  - Edit: signature_date
+    button: |
+      signature_date:
+      ${ signature_date }
+  - Edit: users[0].signature
+    button: |
+      users[0].signature:
+      ${ users[0].signature }
+  - Edit: attorneys[0].name.first
+    button: |
+      attorneys:
+      ${ attorneys }
+  - Edit: witnesses[0].signature
+    button: |
+      witnesses[0].signature:
+      ${ witnesses[0].signature }
+  - Edit: users[0].name.first
+    button: |
+      users[0]:
+      ${ users[0] }
+  - Edit: other_parties[0].name.first
+    button: |
+      other_parties:
+      ${ other_parties }
