@@ -45,7 +45,7 @@ def find_package_data(where='.', package='', exclude=standard_exclude, exclude_d
 setup(name='docassemble.AttorneyAuthorizationforRelease',
       version='0.0.1',
       description=('A docassemble extension.'),
-      long_description='# docassemble.AttorneyAuthorizationforRelease\r\n\r\nA docassemble extension.\r\n\r\nThis is an online version of the Client Authorization to Attorney for Release of Information from masslegalservices.org, which allows for the release of private client information to legal counsel. \r\n\r\n## Author\r\n\r\nKayla Gallagher, kgallagher6@su.suffolk.edu\r\n\r\n',
+      long_description='# docassemble.AttorneyAuthorizationforRelease\r\n\r\nA docassemble extension.\r\n\r\nThis is an online version of the Client Authorization to Attorney for Release of Information from <a href="https://www.masslegalservices.org/content/client-authorization-release-information">masslegalservices.org</a>, which allows for the release of private client information to legal counsel. \r\n\r\n## Author\r\n\r\nKayla Gallagher, kgallagher6@su.suffolk.edu\r\n\r\n',
       long_description_content_type='text/markdown',
       author='Kayla Gallagher',
       author_email='kgallagher6@su.suffolk.edu',
