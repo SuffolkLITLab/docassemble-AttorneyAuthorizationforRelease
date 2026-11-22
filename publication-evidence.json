@@ -1,0 +1,41 @@
+{
+  "source_sha256": "dde9b810e7e1d5d3b338ff42bdcaf91027137ce7fb8f8c22c095f4dc063774de",
+  "review_date": "2026-11-22",
+  "ai_review": {
+    "reviewers": [
+      "Codex",
+      "Neon",
+      "Claude"
+    ],
+    "method": "Applied DAYamlChecker readiness research and publishing prompts with internal model sessions; verified against current sources and AssemblyLine authoring checklist.",
+    "source": "https://www.masslegalservices.org/content/client-authorization-release-information",
+    "findings_resolved": [
+      "Edited answers regenerate fresh downloads",
+      "Explicit tagged PDF generation",
+      "Accurate eligibility and scope disclosures",
+      "Current metadata and precise LIST classification"
+    ]
+  },
+  "runtime": {
+    "run": "20261122-104543",
+    "result": "3 scenarios and 30 steps passed",
+    "checks": [
+      "downloaded PDF content",
+      "answer edit and fresh download",
+      "optional omitted content",
+      "eligibility exit",
+      "390px viewport",
+      "runtime PDF tagged",
+      "one-page final PDF visually inspected"
+    ]
+  },
+  "human_scope_decision": {
+    "reviewer": "User",
+    "date": "2026-11-22",
+    "decision": "User approved preserving original VLP counsel authorization and disclosed records-access scope."
+  },
+  "limitations": [
+    "Scope decision is not a blanket attestation of all formal legal, usability, flow and publication review gates.",
+    "Localhost browser testing; production package not installed or listed."
+  ]
+}

@@ -1,259 +1,205 @@
+---
 include:
-  - docassemble.MAVirtualCourt:basic-questions.yml
+  - docassemble.AssemblyLine:al_package.yml
+  - docassemble.MassAccess:massaccess.yml
 ---
-comment: |
-  The metadata section controls the tab title and saved interview title. You can delete this section if you include this YAML file in another YAML file.
 metadata:
-  title: |
-    Authorization for Release of Information
-  short title: |
-    Attorney Information Release
+  title: Give your lawyer permission to get records about your case
+  short title: Lawyer records release
+  description: Prepare the Massachusetts Volunteer Lawyers Project client authorization
+    for release of information. Name your lawyer and the dispute, then print a form
+    for you and a witness to sign.
+  can_I_use_this_form: Use this form when your Massachusetts lawyer asks for this
+    general client authorization. It authorizes your lawyer to act as your legal counsel
+    and gives broad permission to obtain records about
+    the dispute you name for one year. Ask your lawyer about a narrower release or
+    a special medical-records form if needed.
+  before_you_start: Have your lawyer’s full name and Massachusetts office address,
+    the name of the person or organization involved in your dispute, and a witness
+    for signing after you print.
+  when_you_are_finished: Read the authorization, print it, and sign and date it with
+    a witness. Send it to your lawyer. The tool does not find a lawyer, send the form,
+    or release records by itself.
+  authors:
+  - Kayla Gallagher
+  - Suffolk LIT Lab
+  jurisdiction: NAM-US-US+MA
+  languages:
+  - en
+  LIST_topics: &id001
+  - CO-09-04-00-00
+  tags: *id001
+  original_form_published_on: 2013-06-13
+  original_form:
+  - https://www.masslegalservices.org/content/client-authorization-release-information
+  help_page_url: https://www.masslegalservices.org/content/client-authorization-release-information
+  help_page_title: Client Authorization for Release of Information
+  form_titles:
+  - Client Authorization for Release of Information
+  form_numbers: []
+  allowed_courts: []
+  typical_role: na
+  estimated_completion_minutes: 10
+  estimated_completion_delta: 5
+  efiling_enabled: false
+  integrated_efiling: false
+  integrated_email_filing: false
+  requires_notarization: false
+  review_date: 2026-11-22
+  maturity: testing
+  update_notes: Revised for publication review in November 2026. Legal approval is
+    not implied.
 ---
-comment: |
-  This section is used by MAVirtualCourts to control how some of the questions work.
-mandatory: True
 code: |
-  interview_metadata # make sure we initialize the object
-  if not defined("interview_metadata['Release_Athortization']"):
-    interview_metadata.initializeObject('Release_Athortization')
-  interview_metadata['Release_Athortization'].update({
-    'title': 'Authorization for Release of Information',
-    'short title': 'Attorney Information Release',
-    'description': 'This form allows your attorney to obtain private information from a third party.',
-    'original_form': '',
-    'allowed courts': [
-    ],
-    'categories': [
-      'Consumer and Debt',
-      'Domestic Violence / Safety of self',
-      'Education',
-      'Employment / Unemployment',
-      'Family Law',
-      'Guardianship',
-      'Health and Mental Health',
-      'Housing',
-      'Immigration',
-      'Income and benefits',
-      'Rights of incarcerated/formerly incarcerated',
-    ],
-    'logic block variable': 'Release_Athortization',
-    'attachment block variable': 'Release_Athortization_attachment',
-    'typical role': 'unknown',
-  })
+  AL_DEFAULT_COUNTRY = "US"
+  AL_DEFAULT_STATE = "MA"
+  al_form_type = "letter"
 ---
 features:
-  navigation: True
----
-sections:
-  - review_Release_Athortization: Review your answers
----
-id: interview_order_Release_Athortization
-code: |
-  # This is a placeholder to control logic flow in this interview
-
-  basic_questions_intro_screen 
-  Release_Athortization_intro
-  # Set the allowed courts for this interview
-  allowed_courts = interview_metadata["Release_Athortization"]["allowed courts"]
-  nav.set_section('review_Release_Athortization')
-  # Below sets the user_role by asking a question.
-  # You can set user_role directly instead to either 'plaintiff' or 'defendant'
-  user_ask_role
-  # Set the answer file name.
-  set_parts(subtitle=str(users[0])) 
-  set_progress(12.5)
-  str(attorneys[0])
-  attorneys_address
-  set_progress(25.0)
-  #users[0]
-  str(other_parties[0])
-  str(witnesses[0])
-  signature_date
-  # Save (anonymized) interview statistics.
-  #store_variables_snapshot(data={'zip': users[0].address.zip})
-  Release_Athortization_preview_question # Pre-canned preview screen
-  basic_questions_signature_flow
-  witnesses[0].signature
-  users[0].signature
-  Release_Athortization = True
-  #users[0].there_is_another = False
----
-comment: |
-  This question is used to introduce your interview. Please customize
-id: Authorization for Release of Information
-continue button field: Release_Athortization_intro
-question: |
-  Authorization for Release of Information
-subquestion: |
-
-  This form from [Mass. Legal Services](https://www.masslegalservices.org) gives your attorney permission to access private information that may be needed in regards to your current legal dispute. Once filled out, this form should be emailed, mailed, or delievered back to your attorney's office. 
-  
-  This interview asks you basic questions regarding your name, attorney information and the name of the opposing party. 
-  
-  **This form requires a witness signature, please have a witness present to sign at the end**
-  
----
-id: basic questions intro screen
-question: |
-  Prepare and download your Authorization for Attorney Release form: Mass Access Project
-subquestion: |
-  The MassAccess Project can help **Massachusetts residents** complete and download forms in 3 steps:
-  
-  Step 1. Answer questions that will fill in your form for you.  
-  Step 2. Preview the completed form.  
-  Step 3. Download and print the final form. You will need to deliver it
-  to your attorney.
-  
-  If you do not live in Massachusetts, you may be able to get help for your 
-  legal problem from [your local legal aid 
-  provider](https://www.lsc.gov/what-legal-aid/find-legal-aid).
-  
-  Tap the {green words} in any screen for a definition or more information.
-  
- 
-  % if chat_partners_available().help:
-  Live help is currently available in this interview. Click the speech bubble
-  (:comment-alt:) in the navigation bar to connect to a live advocate for help.
-  % endif
-
-fields:
-  - To continue, you must accept the [terms of use](https://massaccess.suffolklitlab.org/privacy/): acknowledged_information_use
-    datatype: checkboxes
-    none of the above: False    
-    minlength: 1
-    choices:
-      - I accept the terms of use.
-    validation messages:
-      minlength: |
-        You cannot continue unless you agree to the terms of use.        
-continue button field: basic_questions_intro_screen
-terms:
-  green words: |
-    Green words are legal terms or a short way of referring to something that needs more explanation. The definition or explanation pops up when you tap the green words.
-right: |
-  % if user_has_saved_answers:
-  ${fa_icon("bell", color="primary", size="sm")}
-  Saved answers available!  
-  
-  ${action_button_html(url_action('load_answer'), icon="folder-open", label=word("View answers"), size="sm" )}
-  % endif  
----
-id: Review your form before you sign it
-continue button field: Release_Athortization_preview_question
-question: |
-  Review your form before you sign it
-subquestion: |
-  Here is a preview of the form you'll sign on the next page. 
-  
-   ${ pdf_concatenate(Release_Athortization_attachment['preview'], filename='Release_Athortization.pdf')}
----
-id: signature date
-question: |
-  When are you signing this form?
-subquestion: |
-  We automatically answer "today" for you, below. You can change the date.
-fields: 
-  - Date: signature_date
-    datatype: date
-    default: ${today().format("yyyy-MM-dd")}
----
-id: Screen one
-question: |
-  What is your attorney's address?
-subquestion: |
-  Fill out the street address and city. 
-  Ex: 123 Main St. Boston
-fields:
-  - "Attorney's Street Address": attorneys_address
-  - 'City': attorneys_city
----
-progress: 100
-mandatory: True
-id: Your form is ready to download and return to your Attorney
-question: |
-  Your form is ready to download
-subquestion: |
-  Thank you ${users}. Your form is ready. Please download this form and mail, e-mail, fax or deliver a copy to your attorney for their records. 
-  
-  Below is a preview of your form.
-  
-  ${pdf_concatenate(Release_Athortization_attachment['final'], filename='Release_Athortization.pdf') }
-need: Release_Athortization
-attachment code: Release_Athortization_attachment['final']
+  cache documents: False
+  tagged pdf: True
 ---
 objects:
-  - Release_Athortization_attachment: DADict
+  - users: ALPeopleList.using(target_number=1)
 ---
-attachment:
-    variable name: Release_Athortization_attachment[i]
-    name: Attorney Information Release
-    filename: Attorney_Information_Release
-    docx template file: Attorney_Authorization_for_Release_English.docx
+objects:
+  - lawyer: ALIndividual
 ---
-id: Release_Athortization review screen
-event: review_Release_Athortization
+sections:
+  - review_authorization: Review your answers
+---
+initial: True
+code: |
+  # Rebuild downloads after an answer is edited.
+  undefine("client_authorization_document")
+---
+mandatory: True
+code: |
+  al_intro_screen
+  authorization_intro
+  if not lawyer_requested_form:
+    ask_your_lawyer
+  users[0].name.first
+  lawyer.name.first
+  dispute_with
+  witness_name
+  authorization_preview
+  authorization_download
+---
+id: authorization introduction
+continue button field: authorization_intro
 question: |
-  Placeholder Review Screen
+  Let your lawyer request records
 subquestion: |
-  Edit your answers below
-review: 
-  - Edit: attorneys_address
-    button: |
-      Attorney's Street Address:
-      ${ attorneys_address }
-  - Edit: attorneys_city
-    button: |
-      City:
-      ${ attorneys_city }
-  - Edit: witnesses[0].name.first
-    button: |
-      witnesses:
-      ${ witnesses }
-  - Edit: signature_date
-    button: |
-      signature_date:
-      ${ signature_date }
-  - Edit: users[0].signature
-    button: |
-      users[0].signature:
-      ${ users[0].signature }
-  - Edit: attorneys[0].name.first
-    button: |
-      attorneys:
-      ${ attorneys }
-  - Edit: witnesses[0].signature
-    button: |
-      witnesses[0].signature:
-      ${ witnesses[0].signature }
+  This form gives your named lawyer and the legal staff they choose permission
+  to get records about your dispute. It also authorizes them to act as your legal
+  counsel. The permission lasts for one year after you sign.
+
+  This is broad permission. Ask your lawyer before signing if you want to limit
+  the records they can get. Some records need a different release form.
+
+  You and a witness will sign the printed form. You do not need a witness here now.
+---
+id: lawyer requested form
+question: |
+  Did your lawyer ask you to complete this authorization?
+fields:
+  - My lawyer asked me to use this form: lawyer_requested_form
+    datatype: yesnoradio
+---
+id: talk with lawyer
+event: ask_your_lawyer
+question: |
+  Check with your lawyer first
+subquestion: |
+  This form is for an existing lawyer-client relationship. It does not find
+  or hire a lawyer for you. Ask your lawyer which release form to use.
+
+  [Find legal help in Massachusetts](https://masslrf.org/).
+buttons:
+  - Start over: restart
+  - Leave: exit
+---
+id: lawyer details
+question: |
+  Who is your lawyer?
+fields:
+  - Lawyer or legal aid organization's name: lawyer.name.first
+  - Street address: attorneys_address
+  - City or town: attorneys_city
+subquestion: |
+  Use the Massachusetts office address your lawyer gave you.
+  Include the suite number with the street address.
+---
+id: dispute details
+question: |
+  Who is your dispute with?
+subquestion: |
+  Write the full name of the person or organization. You may list more than one.
+  This limits the authorization to records about the dispute with those you name.
+fields:
+  - Names: dispute_with
+    input type: area
+---
+id: witness name
+question: |
+  Do you know who will witness your signature?
+subquestion: |
+  You can leave this blank and write the witness's name on the printed form.
+  The witness needs to watch you sign and then sign the witness line.
+fields:
+  - Witness's full name: witness_name
+    required: False
+---
+id: authorization preview
+question: |
+  Review the authorization
+subquestion: |
+  Read the whole form before signing. Check your name, the lawyer, and the dispute.
+  The signature and date lines stay blank for you and your witness to fill in together.
+
+  ${ client_authorization_document }
+
+  ${ action_button_html(url_action('review_authorization'), label='Edit answers') }
+continue button field: authorization_preview
+---
+id: review authorization
+event: review_authorization
+question: |
+  Review your answers
+review:
   - Edit: users[0].name.first
     button: |
-      users[0]:
-      ${ users[0] }
-  - Edit: other_parties[0].name.first
+      Your name: ${ users[0] }
+  - Edit: lawyer.name.first
     button: |
-      other_parties:
-      ${ other_parties }
+      Lawyer: ${ lawyer.name.first }
+      ${ attorneys_address }, ${ attorneys_city }, Massachusetts
+  - Edit: dispute_with
+    button: |
+      Dispute with: ${ dispute_with }
+  - Edit: witness_name
+    button: |
+      Witness: ${ witness_name or 'Write the name after printing' }
 ---
-id: signature choice
-decoration: file-signature
+attachment:
+  variable name: client_authorization_document
+  name: Client authorization for your lawyer
+  filename: client_authorization_for_lawyer
+  docx template file: Attorney_Authorization_for_Release_English.docx
+---
+id: authorization download
+event: authorization_download
 question: |
-  Sign your forms
+  Download and sign your authorization
 subquestion: |
-  Your forms are almost ready. You need to sign them first.
-  
-  Use the mouse or touchpad on your computer or
-  sign with your finger on your phone. 
-   
-  You can send the forms to someone else to sign if you choose the "phone" option.
-field: signature_choice
-buttons:  
-  - Sign on my phone: phone
-    image: mobile-alt
-  - Sign on this computer: this device
-    image: desktop
-continue button field: saw_signature_choice
-script: |
-  <script>
-    $(".da-field-buttons > div > .btn-da-custom").last().after("<br>")
-    $(".da-field-buttons > div > .btn-da-custom").first().before("<br>")
-  </script>
+  1. Download, read, and print the form.
+  2. Sign and date it while a witness watches. Have the witness sign and date it too.
+  3. Send the signed form to your lawyer using the contact method they gave you.
+     Keep a copy for yourself.
+
+  This tool does not send the form. Ask your lawyer before signing if you want
+  to limit the permission or if you do not understand any part of it.
+
+  ${ action_button_html(url_action('review_authorization'), label='Edit answers') }
+attachment code: client_authorization_document
