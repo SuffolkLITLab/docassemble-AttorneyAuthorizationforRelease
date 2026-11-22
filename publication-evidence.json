@@ -1,5 +1,5 @@
 {
-  "source_sha256": "bc18a4840228f6d98b448dfb6e5ab2357463a9ebb2cfd42ba6082e5b9f7e0026",
+  "source_sha256": "0a7148d29fc0fd1250423cf42efacba2a868695ab03e1e34a5be86ad6163b24f",
   "review_date": "2026-11-22",
   "ai_review": {
     "reviewers": [
@@ -93,5 +93,16 @@
       "Original VLP operative authorization remains unchanged, as approved by the user. It scores grade13.3 and includes hereby, designated and pertaining. The screen paraphrases its full effect in plain language; this is an explicit document exception, not a claim that the legal text meets grade6."
     ],
     "runtime": "Updated wording: 3 ALKiln scenarios/30 steps passed in run20261122-111430, including edits and mobile width."
+  },
+  "test_standardization": {
+    "date": "2026-11-22",
+    "runner": "Official SuffolkLITLab/ALKiln@v5 action with isolated GitHub sandbox; ALKiln5.17.2",
+    "removed": [
+      "tests/run_alkiln.py",
+      "tests/steps.cjs"
+    ],
+    "validation": "Three scenarios /18 native steps resolve in stable5.17.2 dry-run; no undefined steps. No standard-runner end-to-end result claimed.",
+    "coverage": "Two successful paths download and compare PDFs with reviewed synthetic baselines. Third checks scope exit. Edit/regenerate and exact-width visual checks are explicitly manual in README.",
+    "historical_evidence": "Earlier local runtime results above used the removed custom harness and are retained as historical observations, not proof that the standard runner passes."
   }
 }

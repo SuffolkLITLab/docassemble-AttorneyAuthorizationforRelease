@@ -16,24 +16,11 @@ Feature: Client authorization requested by a lawyer
       | dispute_with | Example Properties LLC | |
       | witness_name | Devon Chen | |
     Then I download "client_authorization_for_lawyer.pdf"
-    And the downloaded PDF "client_authorization_for_lawyer.pdf" should contain "Example Properties LLC"
-    And the downloaded PDF "client_authorization_for_lawyer.pdf" should contain "Devon Chen"
-    And the downloaded PDF "client_authorization_for_lawyer.pdf" should contain "one year"
-    When I follow the review link containing "Edit answers"
-    And I follow the review link containing "Legal problem with:"
-    And I get to "review authorization" with this data:
-      | var | value | trigger |
-      | dispute_with | Revised Company | |
-    And I continue
-    Then the question id should be "authorization download"
-    When I download a fresh copy of "client_authorization_for_lawyer.pdf"
-    Then the downloaded PDF "client_authorization_for_lawyer.pdf" should contain "Revised Company"
-    And the downloaded PDF "client_authorization_for_lawyer.pdf" should not contain "Example Properties LLC"
-
+    And I expect the baseline PDF "baseline_scenario_1.pdf" and the new PDF "client_authorization_for_lawyer.pdf" to be the same
   Scenario: Client leaves witness name for signing later and names two parties
     Given I start the interview at "Attorney_Authorization_for_Release.yml"
     And I wait 1 second
-    And I use a narrow phone viewport
+    And I am using a mobile phone
     And the maximum seconds for each step is 90
     When I get to "authorization download" with this data:
       | var | value | trigger |
@@ -47,9 +34,7 @@ Feature: Client authorization requested by a lawyer
       | dispute_with | Example Company and Alex Example | |
       | witness_name |  | |
     Then I download "client_authorization_for_lawyer.pdf"
-    And the downloaded PDF "client_authorization_for_lawyer.pdf" should contain "Example Company and Alex Example"
-    And the downloaded PDF "client_authorization_for_lawyer.pdf" should not contain "None"
-    And the interview fits the phone width
+    And I expect the baseline PDF "baseline_scenario_2.pdf" and the new PDF "client_authorization_for_lawyer.pdf" to be the same
     And I take a screenshot named "authorization-phone"
 
   Scenario: Person has not been asked by a lawyer to sign a release
