@@ -1,5 +1,5 @@
 {
-  "source_sha256": "dde9b810e7e1d5d3b338ff42bdcaf91027137ce7fb8f8c22c095f4dc063774de",
+  "source_sha256": "bc18a4840228f6d98b448dfb6e5ab2357463a9ebb2cfd42ba6082e5b9f7e0026",
   "review_date": "2026-11-22",
   "ai_review": {
     "reviewers": [
@@ -37,5 +37,61 @@
   "limitations": [
     "Scope decision is not a blanket attestation of all formal legal, usability, flow and publication review gates.",
     "Localhost browser testing; production package not installed or listed."
-  ]
+  ],
+  "plain_language_revision": {
+    "date": "2026-11-22",
+    "target": "Sixth-grade authored prose; common English vocabulary, with necessary terms explained.",
+    "method": "Flesch-Kincaid advisory score; wordfreq English top4000 exact word forms (inflections, proper names and legal terms also flagged). Static text excludes code/URLs/variable expressions; branch prose combined; short labels affect scores. Read screen text and justify exceptions; not proof of comprehension.",
+    "checker": "DAYamlChecker --style --style-review-level thorough --no-url-check; no paid AI call",
+    "grades_before": {
+      "metadata": 10.1,
+      "screens": 5.0,
+      "templates": 13.3
+    },
+    "grades_after": {
+      "metadata": 4.7,
+      "screens": 3.8,
+      "templates": 13.3
+    },
+    "vocabulary_flags": {
+      "metadata": [
+        "authorization",
+        "lasts",
+        "lawyer's",
+        "massachusetts",
+        "watches"
+      ],
+      "screens": [
+        "authorization",
+        "blank",
+        "counsel",
+        "disagreement",
+        "dispute",
+        "lasts",
+        "massachusetts",
+        "suite",
+        "watches",
+        "witness's"
+      ],
+      "templates": [
+        "assistants",
+        "attorneys",
+        "authorization",
+        "authorize",
+        "counsel",
+        "designated",
+        "dispute",
+        "hereby",
+        "massachusetts",
+        "pertaining",
+        "signature"
+      ]
+    },
+    "exceptions": [
+      "Authorization, release, legal counsel, dispute and witness are explained before use or beside the field.",
+      "Massachusetts and the original form title are retained proper names. Suite is paired with room. Ordinary inflections and possessives include lasts, watches and witness's.",
+      "Original VLP operative authorization remains unchanged, as approved by the user. It scores grade13.3 and includes hereby, designated and pertaining. The screen paraphrases its full effect in plain language; this is an explicit document exception, not a claim that the legal text meets grade6."
+    ],
+    "runtime": "Updated wording: 3 ALKiln scenarios/30 steps passed in run20261122-111430, including edits and mobile width."
+  }
 }

@@ -6,20 +6,25 @@ include:
 metadata:
   title: Give your lawyer permission to get records about your case
   short title: Lawyer records release
-  description: Prepare the Massachusetts Volunteer Lawyers Project client authorization
-    for release of information. Name your lawyer and the dispute, then print a form
-    for you and a witness to sign.
-  can_I_use_this_form: Use this form when your Massachusetts lawyer asks for this
-    general client authorization. It authorizes your lawyer to act as your legal counsel
-    and gives broad permission to obtain records about
-    the dispute you name for one year. Ask your lawyer about a narrower release or
-    a special medical-records form if needed.
-  before_you_start: Have your lawyer’s full name and Massachusetts office address,
-    the name of the person or organization involved in your dispute, and a witness
-    for signing after you print.
-  when_you_are_finished: Read the authorization, print it, and sign and date it with
-    a witness. Send it to your lawyer. The tool does not find a lawyer, send the form,
-    or release records by itself.
+  description: |
+    Make a form to let your lawyer act for you and get records about your case.
+    Use it if your lawyer in Massachusetts asked you to fill it out.
+    Print the form for you and a witness to sign. A witness is someone who
+    watches you sign, then signs too.
+  can_I_use_this_form: |
+    Use this form if your lawyer asked you for it. It gives your lawyer and
+    their legal staff permission to act for you and get records about the
+    problem you name. This permission lasts for one year from the date you sign.
+    Ask your lawyer if you want to limit which records they can get.
+    Some records, such as medical records, may need a different form.
+  before_you_start: |
+    Have your lawyer's name and office address in Massachusetts.
+    Know who your legal problem is with. You will need a witness when you
+    sign the printed form. You do not need one here now.
+  when_you_are_finished: |
+    Read and print the form. Sign and date it with a witness.
+    Send it to your lawyer. This tool does not find a lawyer for you,
+    send the form, or share your records.
   authors:
   - Kayla Gallagher
   - Suffolk LIT Lab
@@ -89,20 +94,26 @@ code: |
 id: authorization introduction
 continue button field: authorization_intro
 question: |
-  Let your lawyer request records
+  Let your lawyer get records
 subquestion: |
-  This form gives your named lawyer and the legal staff they choose permission
-  to get records about your dispute. It also authorizes them to act as your legal
-  counsel. The permission lasts for one year after you sign.
+  This form gives your lawyer and their legal staff permission to get records
+  about your legal problem. It also lets them act for you. The form
+  calls this acting as your "legal counsel." The permission lasts for one year
+  from the date you sign.
 
-  This is broad permission. Ask your lawyer before signing if you want to limit
-  the records they can get. Some records need a different release form.
+  They can ask for any records about the problem you name. Talk with your
+  lawyer before you sign if you want to limit which records they can get.
+  Some records, such as medical records, may need a different form.
 
-  You and a witness will sign the printed form. You do not need a witness here now.
+  You and a witness will sign the printed form. A witness is someone who
+  watches you sign, then signs too. You do not need a witness here now.
+
+  The form is called an "authorization" because it gives someone permission
+  to act for you. A "release" lets someone share records.
 ---
 id: lawyer requested form
 question: |
-  Did your lawyer ask you to complete this authorization?
+  Did your lawyer ask you to fill out this form?
 fields:
   - My lawyer asked me to use this form: lawyer_requested_form
     datatype: yesnoradio
@@ -112,8 +123,8 @@ event: ask_your_lawyer
 question: |
   Check with your lawyer first
 subquestion: |
-  This form is for an existing lawyer-client relationship. It does not find
-  or hire a lawyer for you. Ask your lawyer which release form to use.
+  Use this form only if you already have a lawyer. It does not find
+  or hire a lawyer for you. Ask your lawyer which form to use.
 
   [Find legal help in Massachusetts](https://masslrf.org/).
 buttons:
@@ -124,39 +135,41 @@ id: lawyer details
 question: |
   Who is your lawyer?
 fields:
-  - Lawyer or legal aid organization's name: lawyer.name.first
+  - Name of your lawyer or legal aid office: lawyer.name.first
   - Street address: attorneys_address
   - City or town: attorneys_city
 subquestion: |
-  Use the Massachusetts office address your lawyer gave you.
-  Include the suite number with the street address.
+  Use the office address in Massachusetts that your lawyer gave you.
+  Add the room or suite number with the street address.
 ---
 id: dispute details
 question: |
-  Who is your dispute with?
+  Who is your legal problem with?
 subquestion: |
-  Write the full name of the person or organization. You may list more than one.
-  This limits the authorization to records about the dispute with those you name.
+  Write the full name of the person, business, or group. You may list more than one.
+  The form calls this your "dispute." It means the problem or disagreement
+  you want help with. This form only covers records about that problem.
 fields:
   - Names: dispute_with
     input type: area
 ---
 id: witness name
 question: |
-  Do you know who will witness your signature?
+  Do you know who will watch you sign?
 subquestion: |
   You can leave this blank and write the witness's name on the printed form.
-  The witness needs to watch you sign and then sign the witness line.
+  They must watch you sign, then sign the witness line.
 fields:
   - Witness's full name: witness_name
     required: False
 ---
 id: authorization preview
 question: |
-  Review the authorization
+  Review your form
 subquestion: |
-  Read the whole form before signing. Check your name, the lawyer, and the dispute.
-  The signature and date lines stay blank for you and your witness to fill in together.
+  Read the whole form before you sign. Check your name, the lawyer, and who
+  your legal problem is with. You and your witness will fill in the blank
+  lines when you sign and date the form.
 
   ${ client_authorization_document }
 
@@ -177,7 +190,7 @@ review:
       ${ attorneys_address }, ${ attorneys_city }, Massachusetts
   - Edit: dispute_with
     button: |
-      Dispute with: ${ dispute_with }
+      Legal problem with: ${ dispute_with }
   - Edit: witness_name
     button: |
       Witness: ${ witness_name or 'Write the name after printing' }
@@ -191,15 +204,15 @@ attachment:
 id: authorization download
 event: authorization_download
 question: |
-  Download and sign your authorization
+  Download and sign your form
 subquestion: |
   1. Download, read, and print the form.
-  2. Sign and date it while a witness watches. Have the witness sign and date it too.
-  3. Send the signed form to your lawyer using the contact method they gave you.
+  2. Sign and date it while a witness watches. Have them sign and date it too.
+  3. Send the signed form to your lawyer in the way they asked you to.
      Keep a copy for yourself.
 
-  This tool does not send the form. Ask your lawyer before signing if you want
-  to limit the permission or if you do not understand any part of it.
+  This tool does not send the form. Talk with your lawyer before you sign
+  if you want to limit what it allows. Ask them about any part you do not understand.
 
   ${ action_button_html(url_action('review_authorization'), label='Edit answers') }
 attachment code: client_authorization_document

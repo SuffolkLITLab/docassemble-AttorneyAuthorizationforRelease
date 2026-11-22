@@ -20,7 +20,7 @@ Feature: Client authorization requested by a lawyer
     And the downloaded PDF "client_authorization_for_lawyer.pdf" should contain "Devon Chen"
     And the downloaded PDF "client_authorization_for_lawyer.pdf" should contain "one year"
     When I follow the review link containing "Edit answers"
-    And I follow the review link containing "Dispute with:"
+    And I follow the review link containing "Legal problem with:"
     And I get to "review authorization" with this data:
       | var | value | trigger |
       | dispute_with | Revised Company | |
