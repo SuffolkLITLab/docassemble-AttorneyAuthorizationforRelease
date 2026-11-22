@@ -16,7 +16,7 @@ Feature: Client authorization requested by a lawyer
       | dispute_with | Example Properties LLC | |
       | witness_name | Devon Chen | |
     Then I download "client_authorization_for_lawyer.pdf"
-    And I expect the baseline PDF "baseline_scenario_1.pdf" and the new PDF "client_authorization_for_lawyer.pdf" to be the same
+    And I expect the baseline PDF "authorization-named-witness-baseline.pdf" and the new PDF "client_authorization_for_lawyer.pdf" to be the same
   Scenario: Client leaves witness name for signing later and names two parties
     Given I start the interview at "Attorney_Authorization_for_Release.yml"
     And I wait 1 second
@@ -34,7 +34,7 @@ Feature: Client authorization requested by a lawyer
       | dispute_with | Example Company and Alex Example | |
       | witness_name |  | |
     Then I download "client_authorization_for_lawyer.pdf"
-    And I expect the baseline PDF "baseline_scenario_2.pdf" and the new PDF "client_authorization_for_lawyer.pdf" to be the same
+    And I expect the baseline PDF "authorization-blank-witness-baseline.pdf" and the new PDF "client_authorization_for_lawyer.pdf" to be the same
     And I take a screenshot named "authorization-phone"
 
   Scenario: Person has not been asked by a lawyer to sign a release

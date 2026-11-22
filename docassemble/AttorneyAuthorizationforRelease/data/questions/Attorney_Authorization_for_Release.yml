@@ -52,8 +52,9 @@ metadata:
   requires_notarization: false
   review_date: 2026-11-22
   maturity: testing
-  update_notes: Revised for publication review in November 2026. Legal approval is
-    not implied.
+  update_notes: |
+    Keeps the VLP authorization text and explains the permission it gives.
+    Includes answer review and print-and-sign steps for the client and witness.
 ---
 code: |
   AL_DEFAULT_COUNTRY = "US"
