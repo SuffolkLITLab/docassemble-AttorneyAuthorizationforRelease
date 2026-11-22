@@ -1,0 +1,33 @@
+name: ALKiln interview tests
+
+on:
+  workflow_dispatch:
+    inputs:
+      tags:
+        description: Optional Cucumber tag expression
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: alkiln-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  interviews:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Start an isolated temporary docassemble server
+        id: server
+        uses: SuffolkLITLab/ALKiln/action_for_github_server@v5
+      - name: Run interview tests and upload reports
+        uses: SuffolkLITLab/ALKiln@v5
+        with:
+          SERVER_URL: ${{ steps.server.outputs.SERVER_URL }}
+          DOCASSEMBLE_DEVELOPER_API_KEY: ${{ steps.server.outputs.DOCASSEMBLE_DEVELOPER_API_KEY }}
+          INSTALL_METHOD: server
+          ALKILN_VERSION: 5.17.2
+          ALKILN_TAG_EXPRESSION: ${{ inputs.tags }}

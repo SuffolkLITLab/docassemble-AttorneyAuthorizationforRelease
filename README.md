@@ -1,10 +1,9 @@
-# docassemble.AttorneyAuthorizationforRelease
+# Client authorization for a lawyer to obtain records
 
-A docassemble extension.
+Help a client fill out the authorization requested by their Massachusetts lawyer. The form gives the named lawyer and designated legal staff permission to act as counsel and obtain records about the named dispute for one year. The client and a witness sign the printed form. The interview does not find a lawyer or send the form.
 
-This is an online version of the Client Authorization to Attorney for Release of Information from <a href="https://www.masslegalservices.org/content/client-authorization-release-information">masslegalservices.org</a>, which allows for the release of private client information to legal counsel. 
+Entry point: `docassemble.AttorneyAuthorizationforRelease:data/questions/Attorney_Authorization_for_Release.yml`.
 
-## Author
+The legal text follows the [Volunteer Lawyers Project client authorization](https://www.masslegalservices.org/content/client-authorization-release-information). The interview explains the broad permission and advises clients to ask their lawyer about limits or records that need a separate release.
 
-Kayla Gallagher, kgallagher6@su.suffolk.edu
-
+Original student author: Kayla Gallagher, kgallagher6@su.suffolk.edu.
